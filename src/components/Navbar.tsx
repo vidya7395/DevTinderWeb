@@ -1,14 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { removeUser } from "../utils/slice/userSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar  = () => {
   const user = useSelector((state: { user: any }) => state.user);
-  console.log("SER",user);
-  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+const logoutHandler = () => {
+  dispatch(removeUser());
+  // clear cookies or token
+  document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  navigate("/login");
+}  
   return (
     <div className="navbar bg-base-300">
     <div className="flex-1">
-      <a className="btn btn-ghost text-xl">👨🏻‍💻</a>
+      <Link to={"/"} className="btn btn-ghost text-xl">👨🏻‍💻</Link>
     </div>
     {user && <div className="flex items-center justify-center">
     <p className="mx-3">Welcome, {user.firstName}</p>
@@ -54,22 +62,22 @@ const Navbar  = () => {
       </div>}
     <div className="dropdown dropdown-end me-4">
      
-        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar bg-amber-400">
+        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle  bg-amber-400">
           <div className="w-10 rounded-full flex items-center justify-center">
-          <span className="text-xl font-bold">{user.firstName[0]}</span>
+          <div className="text-xl font-bold">{user.firstName[0]}</div>
           </div>
         </div>
         <ul
           tabIndex={0}
           className="menu menu-sm dropdown-content bg-base-300 rounded-box z-[1] mt-3 w-52 p-2 shadow">
           <li>
-            <a className="justify-between">
+            <Link className="justify-between" to={"/profile"}>
               Profile
               <span className="badge">New</span>
-            </a>
+            </Link>
           </li>
           <li><a>Settings</a></li>
-          <li><a>Logout</a></li>
+          <li onClick={()=>logoutHandler()}><a>Logout</a></li>
         </ul>
       </div>
    
