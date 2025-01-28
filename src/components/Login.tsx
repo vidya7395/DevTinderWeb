@@ -1,24 +1,33 @@
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/slice/userSlice";
+import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils/constant";
 
 const Login = () => {
   const [emailId, setEmailId] = useState('Trump@gmail.com');
   const [password, setPassword] = useState('Trump@123');
   const [showToaster, setShowToaster] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const loginHandler = async () => {
     try {
-      const res= axios.post('http://localhost:3000/login', {
+      const res= await axios.post(`${BASE_URL}/login`, {
         emailId,
         password
       },{
         withCredentials: true
       });
       setShowToaster(true);
+      // why i am getting promise in return
+      console.log("RES", res.data);
+       
+      dispatch(addUser(res.data))
       setTimeout(() => {
         setShowToaster(false);
-      }, 3000);
-      console.log("RES", res);
-      
+      }, 2000);
+      navigate("/");      
     } catch (error) {
       console.log("ERROR", error);
 

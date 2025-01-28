@@ -1,12 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useSelector } from "react-redux"
 
 const Navbar  = () => {
+  const user = useSelector((state: { user: any }) => state.user);
+  console.log("SER",user);
+  
   return (
     <div className="navbar bg-base-300">
     <div className="flex-1">
       <a className="btn btn-ghost text-xl">👨🏻‍💻</a>
     </div>
-    <div className="flex">
-      <div className="dropdown dropdown-end me-4">
+    {user && <div className="flex items-center justify-center">
+    <p className="mx-3">Welcome, {user.firstName}</p>
+     {  <div className="dropdown dropdown-end me-4 hidden">
         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
            {/* {/* I want the theme icon  */}
           <svg
@@ -45,13 +51,12 @@ const Navbar  = () => {
         </label>
       </div>
         </ul>
-      </div>
-      <div className="dropdown dropdown-end me-4">
-        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-          <div className="w-10 rounded-full">
-            <img
-              alt="Tailwind CSS Navbar component"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+      </div>}
+    <div className="dropdown dropdown-end me-4">
+     
+        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar bg-amber-400">
+          <div className="w-10 rounded-full flex items-center justify-center">
+          <span className="text-xl font-bold">{user.firstName[0]}</span>
           </div>
         </div>
         <ul
@@ -67,7 +72,9 @@ const Navbar  = () => {
           <li><a>Logout</a></li>
         </ul>
       </div>
+   
     </div>
+}
   </div>
   )
 }

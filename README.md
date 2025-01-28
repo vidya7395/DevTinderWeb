@@ -21,5 +21,7 @@ Body
    - Install axios
    - CORS - install cors in backend => add middleware width configuration
    - whitelist list the origin
-   - Whenever making api call so pass axios  => {withCredentials: true} 
+   - Whenever making api call so pass axios  => {withCredentials: true}
+
+   - Install Redux toolkit  , react redux 
  
