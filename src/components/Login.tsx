@@ -8,6 +8,7 @@ import { BASE_URL } from "../utils/constant";
 const Login = () => {
   const [emailId, setEmailId] = useState('Trump@gmail.com');
   const [password, setPassword] = useState('Trump@123');
+  const [error, setError] = useState('');
   const [showToaster, setShowToaster] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,9 +29,8 @@ const Login = () => {
         setShowToaster(false);
       }, 2000);
       navigate("/");      
-    } catch (error) {
-      console.log("ERROR", error);
-
+    } catch (error:any) {
+      setError(error?.response?.data || "Something went wrong");
     }
   }
   return (
@@ -46,6 +46,7 @@ const Login = () => {
             <h2 className="card-title mb-4 text-2xl">Login</h2>
             <input type="text" placeholder="Email" value={emailId} onChange={(e) => setEmailId(e.target.value)} className="input input-bordered w-full max-w-xs" />
             <input type="text" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="input input-bordered w-full max-w-x mt-3" />
+          {error && <p className="text-red-500 my-3">{error}</p>}
             <div className="card-actions justify-end mt-4">
               <button className="btn btn-primary" onClick={() => loginHandler()}>Login</button>
             </div>
