@@ -13,3 +13,13 @@ Body
  Route = /  =>  FEED
  Route = /login  =>  Login
  Route = /connections  =>  Connections
+
+## 28th Jan'25 - Tuesday
+
+   ### Login
+   - Make login page
+   - Install axios
+   - CORS - install cors in backend => add middleware width configuration
+   - whitelist list the origin
+   - Whenever making api call so pass axios  => {withCredentials: true} 
+ 
