@@ -29,7 +29,7 @@ const Login = () => {
         setShowToaster(false);
       }, 2000);
       navigate("/");      
-    } catch (error:any) {
+    } catch (error) {
       setError(error?.response?.data || "Something went wrong");
     }
   }

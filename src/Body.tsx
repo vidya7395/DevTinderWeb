@@ -9,9 +9,11 @@ import { useEffect } from 'react';
 const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userData = useSelector((state: { user: any }) => state.users);
+  const userData = useSelector((state: { user: any }) => state.user);
   const fetchUser = async () => {
-    if(!userData) return;
+    console.log("User Data", !userData);
+    
+    if(userData) return;
     try {
       const res = await axios.get(`${BASE_URL}/profile/view`, {
         withCredentials: true
@@ -26,6 +28,8 @@ const Body = () => {
     }
   };
   useEffect(()=>{
+    console.log("Caleed");
+    
      fetchUser();
   },[])
   return (

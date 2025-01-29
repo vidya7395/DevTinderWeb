@@ -75,7 +75,9 @@ const Navbar = () => {
 
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle  bg-amber-400">
             <div className="w-10 rounded-full flex items-center justify-center">
-              <div className="text-xl font-bold">{user.firstName[0]}</div>
+              {!user.photoUrl ? <div className="text-xl font-bold">{user.firstName[0]}</div>
+                : <img src={user.photoUrl} className="object-contain h-full w-full flex" />
+              }
             </div>
           </div>
           <ul
