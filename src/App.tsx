@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Profile from './components/Profile';
 import Feed from './components/Feed';
 import Connections from './components/Connections';
+import RequestReceived from './components/RequestReceived';
 function App() {
   return (
     <>
@@ -15,7 +16,7 @@ function App() {
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/profile' element={<Profile/>}></Route>
           <Route path='/connections' element={<Connections/>}></Route>
-          <Route path='/request' element={<Profile/>}></Route>
+          <Route path='/request-received' element={<RequestReceived/>}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
