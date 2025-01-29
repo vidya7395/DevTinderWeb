@@ -73,12 +73,10 @@ const Navbar = () => {
         </div>}
         <div className="dropdown dropdown-end me-4">
 
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle  bg-amber-400">
-            <div className="w-10 rounded-full flex items-center justify-center">
+          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle  bg-gray-950 overflow-clip">
               {!user.photoUrl ? <div className="text-xl font-bold">{user.firstName[0]}</div>
-                : <img src={user.photoUrl} className="object-contain h-full w-full flex" />
+                : <img src={user.photoUrl} className="object-cover h-full w-full" />
               }
-            </div>
           </div>
           <ul
             tabIndex={0}
@@ -89,7 +87,7 @@ const Navbar = () => {
                 <span className="badge">New</span>
               </Link>
             </li>
-            <li><a>Settings</a></li>
+            <li><Link to={"/connections"}>Connections</Link></li>
             <li onClick={() => handleLogout()}><a>Logout</a></li>
           </ul>
         </div>
