@@ -7,8 +7,9 @@ const requestReceivedSlice = createSlice({
         addRequestReceived:(state, action)=>{
             return action.payload;
         },
-        removeRequestReceived:()=>{
-            return null;
+        removeRequestReceived:(state,action)=>{
+            const newArray = state.filter((r)=>r._id !== action.payload);
+            return newArray;
         }
     },
 });

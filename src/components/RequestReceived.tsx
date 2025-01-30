@@ -3,7 +3,7 @@ import { BASE_URL } from '../utils/constant'
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { addRequestReceived } from '../utils/slice/requestReceivedSlice';
-import RequestReceivedCard from './REquestReceivedCard';
+import RequestReceivedCard from './RequestReceivedCard';
 
 const RequestReceived = () => {
   const dispatch = useDispatch();
@@ -24,11 +24,11 @@ const RequestReceived = () => {
   },[])
   if(requests && requests.length === 0 ) return <h1>No data</h1>
   return (
-    <>
+    <div className='flex flex-wrap gap-10'>
       {requests && requests.map((request:any)=>{
-        return <RequestReceivedCard key ={request._id} data={request.fromUserId}></RequestReceivedCard>
+        return <RequestReceivedCard key ={request._id} requestId={request._id} data={request.fromUserId}></RequestReceivedCard>
       })}
-    </>
+    </div>
   )
 }
 
