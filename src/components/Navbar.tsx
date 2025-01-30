@@ -4,6 +4,7 @@ import { removeUser } from "../utils/slice/userSlice";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../utils/constant";
+import { logout } from "../utils/action";
 
 const Navbar = () => {
   const user = useSelector((state: { user: any }) => state.user);
@@ -17,7 +18,7 @@ const Navbar = () => {
         {
           withCredentials: true,
         });
-      dispatch(removeUser());
+      dispatch(logout()); 
       return navigate("/login");
     } catch (error) {
       console.log(error);

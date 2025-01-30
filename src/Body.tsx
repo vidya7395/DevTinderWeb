@@ -10,9 +10,7 @@ const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = useSelector((state: { user: any }) => state.user);
-  const fetchUser = async () => {
-    console.log("User Data", !userData);
-    
+  const fetchUser = async () => {    
     if(userData) return;
     try {
       const res = await axios.get(`${BASE_URL}/profile/view`, {
@@ -27,9 +25,7 @@ const Body = () => {
         
     }
   };
-  useEffect(()=>{
-    console.log("Caleed");
-    
+  useEffect(()=>{    
      fetchUser();
   },[])
   return (
