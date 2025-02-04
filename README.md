@@ -49,5 +49,23 @@ Body
       - enable port :80 of your instance - from AWS console
 
 
+# Adding a custom Domain name | 31 JAN'25 FRIDAY
+   - purchase domain name from godaddy
+   - signup on cloudfare & add a new domain name
+   - change the nameservers on godaddy and point it to cloudfare
+   - wait for sometime till your nameservers are updated ~15 minutes
+   - DNS record: A devtinder.in 
+   - Enable SSL for website
+
+# SENDING EMAILS via SES
+   - Create a IAM user
+   - Give access yo Amazon SES Full Access
+   - Amazon SES : Create an Identity
+   - Verify your domain name
+   - Verify an email address 
+   - Install AWS SDK -SES - USE v3
+
+
+
   
  
