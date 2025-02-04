@@ -5,6 +5,8 @@ import axios from 'axios'
 const Premium = () => {
     const [isUserPremium, setIsUserPremium] = useState(false);
     const verifyPremiumUser = async ()=>{
+        console.log("It is called the verify premium user method");
+        
         const res = await axios.get(BASE_URL+"/premium/verify",{withCredentials:true})
         if(res.data.isPremium){
             setIsUserPremium(true);
@@ -35,7 +37,7 @@ const Premium = () => {
             theme: {
                 color: '#F37254'
             },
-            handler: verifyPremiumUser()
+            handler: verifyPremiumUser
         };
         //Open the razorpay dialogue box
         const rzp = new (window as any).Razorpay(options);
