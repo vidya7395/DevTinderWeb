@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BASE_URL } from '../utils/constant'
 import axios from 'axios'
 
 const Premium = () => {
     const [isUserPremium, setIsUserPremium] = useState(false);
+    const verifyPremiumUser = async ()=>{
+        const res = await axios.get(BASE_URL+"/premium/verify",{withCredentials:true})
+        if(res.data.isPremium){
+            setIsUserPremium(true);
+        }
+    }
     const handleBuyMemberShip = async (type) => {
         const order: any = await axios.post(BASE_URL + "/payment/create",
             {
@@ -12,12 +18,7 @@ const Premium = () => {
             withCredentials: true
         }
         );
-        const verifyPremiumUser = async ()=>{
-            const res = await axios.get(BASE_URL+"/premium/verify",{withCredentials:true})
-            if(res.data.isPremium){
-                setIsUserPremium(true);
-            }
-        }
+       
         const { amount, keyId, currency, orderId: order_id, notes } = order.data
         const options = {
             key: keyId,
@@ -41,6 +42,9 @@ const Premium = () => {
         rzp.open();
         // 
     }
+    useEffect(()=>{
+        verifyPremiumUser()
+    },[])
     return !isUserPremium ?
         (<>
             <div className="flex w-full">
