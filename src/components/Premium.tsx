@@ -1,40 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BASE_URL } from '../utils/constant'
 import axios from 'axios'
 
 const Premium = () => {
+    const [isUserPremium, setIsUserPremium] = useState(false);
     const handleBuyMemberShip = async (type) => {
-        const order:any = await axios.post(BASE_URL + "/payment/create",
+        const order: any = await axios.post(BASE_URL + "/payment/create",
             {
-                membershipType:type
+                membershipType: type
             }, {
             withCredentials: true
         }
         );
-        const {amount,keyId,currency,orderId:order_id,notes}= order.data
+        const verifyPremiumUser = async ()=>{
+            const res = await axios.get(BASE_URL+"/premium/verify",{withCredentials:true})
+            if(res.data.isPremium){
+                setIsUserPremium(true);
+            }
+        }
+        const { amount, keyId, currency, orderId: order_id, notes } = order.data
         const options = {
             key: keyId,
-            amount, 
+            amount,
             currency,
             name: 'Dev',
             description: 'Membership',
             order_id,
             prefill: {
-              name: notes.firstName +" "+ notes.lastName,
-              email: notes.emailId,
-              contact: '9586880759'
+                name: notes.firstName + " " + notes.lastName,
+                email: notes.emailId,
+                contact: '9586880759'
             },
             theme: {
-              color: '#F37254'
+                color: '#F37254'
             },
-          };
+            handler: verifyPremiumUser()
+        };
         //Open the razorpay dialogue box
         const rzp = new (window as any).Razorpay(options);
         rzp.open();
         // 
     }
-    return (
-        <div className="flex w-full">
+    return !isUserPremium ?
+        (<>
+            <div className="flex w-full">
             <div className="card bg-base-300 rounded-box grid p-4 grow place-items-center">
                 <h1 className='text-3xl text-bold'>Silver Membership</h1>
                 <ul>
@@ -55,7 +64,10 @@ const Premium = () => {
                 <button className='btn btn-primary mt-4' onClick={() => handleBuyMemberShip("gold")}>Buy Gold </button>
             </div>
         </div>
-    )
+            </>
+        ):<div>You are already a premium user</div>
+        
+    
 }
 
 export default Premium
