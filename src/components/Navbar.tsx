@@ -7,7 +7,7 @@ import { BASE_URL } from "../utils/constant";
 import { logout } from "../utils/action";
 
 const Navbar = () => {
-  const user = useSelector((state: { user: any }) => state.user);
+  const user = useSelector((store: any) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = async () => {
@@ -18,7 +18,7 @@ const Navbar = () => {
         {
           withCredentials: true,
         });
-      dispatch(logout()); 
+      dispatch(logout());
       return navigate("/login");
     } catch (error) {
       console.log(error);
@@ -75,9 +75,9 @@ const Navbar = () => {
         <div className="dropdown dropdown-end me-4">
 
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle  bg-gray-950 overflow-clip">
-              {!user.photoUrl ? <div className="text-xl font-bold">{user.firstName[0]}</div>
-                : <img src={user.photoUrl} className="object-cover h-full w-full" />
-              }
+            {!user.photoUrl ? <div className="text-xl font-bold">{user.firstName[0]}</div>
+              : <img src={user.photoUrl} className="object-cover h-full w-full" />
+            }
           </div>
           <ul
             tabIndex={0}

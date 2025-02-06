@@ -148,7 +148,7 @@ const Login = () => {
             <input type="text" placeholder="Email" value={emailId} onChange={(e) => setEmailId(e.target.value)} className="input input-bordered w-full max-w-xs mt-3" />
             <input type="text" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="input input-bordered w-full max-w-x mt-3" />
             {error && <p className="text-red-500 my-3">{error}</p>}
-            <div className="card-actions justify-end mt-4 my-second-step">
+            <div className="card-actions justify-end mt-4 my-second-step ">
               <button className="btn btn-primary" onClick={() => {isLoginForm?handleLogin():handleSignup()}} type="submit">{isLoginForm?"Login":"Sing Up"}</button>
             </div>
             <p className="text-center cursor-pointer mt-4" onClick={()=>setIsLoginForm(!isLoginForm)}> {isLoginForm?"New User ? Sign up here":"Existing User ?  Login here"}</p>

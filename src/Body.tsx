@@ -9,30 +9,32 @@ import { useEffect } from 'react';
 const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userData = useSelector((state: { user: any }) => state.user);
-  const fetchUser = async () => {    
-    if(userData) return;
+  const userData = useSelector((store: any) => store.user);
+  const fetchUser = async () => {
+    if (userData) return;
     try {
+      console.log("The fetch user api");
+
       const res = await axios.get(`${BASE_URL}/profile/view`, {
         withCredentials: true
       });
       dispatch(addUser(res.data))
-    } catch (error:any) {
-      if(error.status === 401){
+    } catch (error: any) {
+      if (error.status === 401) {
         navigate("/login");
       }
       console.log("ERROR", error);
-        
+
     }
   };
-  useEffect(()=>{    
-     fetchUser();
-  },[])
+  useEffect(() => {
+    fetchUser();
+  }, [])
   return (
     <>
       <Navbar />
       <div className='p-5'>
-        <Outlet/>
+        <Outlet />
       </div>
     </>
     //Now we will create children routes
