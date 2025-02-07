@@ -45,7 +45,7 @@ const Connections = () => {
                                     <p className='my-1'>📝{about}</p>
                                 </div>
                             </div>
-                            <button onClick={() => navigate(`/chat/${_id}`)} className='btn btn-info btn-circle'>💬</button>
+                            <button onClick={() => navigate(`/chat/${_id}`, { state: { firstName, lastName, photoUrl } })} className='btn btn-info btn-circle'>💬</button>
                         </div>
                     )
                 })
