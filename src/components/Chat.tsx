@@ -104,7 +104,7 @@ const Chat = () => {
 
     return (
         <div className='flex justify-center  sticky'>
-            <div className=' border rounded w-[50%] bg-gray-950  flex flex-col justify-between  overflow-auto sticky '>
+            <div className=' border rounded w-full bg-gray-950 md:w-[50%]  flex flex-col justify-between  overflow-auto sticky '>
                 <header className='p-5 border-b  sticky top-0 bg-gray-950  z-10 flex items-center gap-5 '>
                     <div className='rounded-full h-[50px] w-[50px]'>
                         <img alt="photo" src={targetUserProfile} className='w-full h-full object-cover rounded-full' />
